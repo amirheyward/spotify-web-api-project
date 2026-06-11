@@ -6,14 +6,15 @@ interface CardProps {
     song: string;
     artist: string;
     playing: boolean;
+    cover: string; // url
 }
 
 function Card(props: CardProps) {
-    const {album, song, artist, playing} = props;
+    const {album, song, artist, playing, cover} = props;
   return (
     <div className="cardContainer">
       <div className="coverContainer">
-        <img src={templateImage} alt="Album Cover" />
+        <img src={cover} alt="Album Cover" />
       </div>
       <div className="detailContainer">
         <ul>

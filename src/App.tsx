@@ -11,7 +11,7 @@ function App() {
       <button
         onClick={async () => {
           const data = await getCurrentTrack();
-          setContent(<Card album={data.album} song={data.song} artist={data.artist} playing={data.playing} />);
+          setContent(<Card album={data.album} song={data.song} artist={data.artist} playing={data.playing} cover={data.cover}/>);
         }}
       >click</button>
       <div>{content}</div>
