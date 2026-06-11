@@ -24,5 +24,5 @@ dist-ssr
 *.sw?
 
 # Security
-authorization.json
+authorization.js
 api.ts

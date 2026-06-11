@@ -1,5 +1,6 @@
 .cardContainer{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     background-color: rgb(227, 227, 227);
     width: 450px;
     height: 225px;
