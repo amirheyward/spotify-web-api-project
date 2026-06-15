@@ -26,3 +26,4 @@ dist-ssr
 # Security
 authorization.js
 api.ts
+.env
