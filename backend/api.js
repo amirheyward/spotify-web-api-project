@@ -8,11 +8,11 @@ router.get("/getCurrentTrack", async (req, res) => {
     "https://api.spotify.com/v1/me/player/currently-playing",
     {
       headers: {
-        Authorization:
-          "Bearer " +
-          req.access_token,
+        Authorization: "Bearer " + req.access_token,
       },
     },
   );
+
+  return res.status(200).json(response.data);
 });
 export default router;

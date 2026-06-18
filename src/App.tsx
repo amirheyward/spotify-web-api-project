@@ -1,6 +1,6 @@
 import "./App.css";
 import Card from "./components/Card.tsx"
-import { getCurrentTrack } from "./api";
+import { getCurrentTrack } from "./api.ts";
 import { useState } from "react";
 
 function App() {
