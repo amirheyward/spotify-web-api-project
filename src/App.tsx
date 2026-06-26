@@ -1,22 +1,17 @@
 import "./App.css";
-import Card from "./components/Card.tsx"
-import { getCurrentTrack } from "./api.ts";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CardPage from "./pages/CardPage.tsx";
+import Login from "./pages/Login.tsx";
 
 function App() {
-  const [content, setContent] = useState(<></>);
-
   return (
-    <div>
-      <button
-        onClick={async () => {
-          const data = await getCurrentTrack();
-          setContent(<Card album={data.album} song={data.song} artist={data.artist} playing={data.playing} cover={data.cover}/>);
-        }}
-      >click</button>
-      <div>{content}</div>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/CardPage" element={<CardPage />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
