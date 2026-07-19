@@ -1,9 +1,12 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
-  let access_token = undefined;
+  const { accessToken, setAccessToken } = useContext(UserContext);
 
   async function login() {
     const username = inputRef.current!.value;
@@ -12,7 +15,8 @@ function Login() {
     });
 
     if (response.data.access_token) {
-      access_token = response.data.access_token;
+      setAccessToken(response.data.access_token);
+      navigate("/cardPage");
     }
   }
 
