@@ -1,22 +1,31 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Login() {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  const signupFailed = Boolean(searchParams.get("signupFailed")) ?? false;
+  let [loginFailed, setLoginFailed] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const { accessToken, setAccessToken } = useContext(UserContext);
 
   async function login() {
     const username = inputRef.current!.value;
-    const response = await axios.post("http://127.0.0.1:8080/login", {
-      username: username,
-    });
+    try {
+      const response = await axios.post("http://127.0.0.1:8080/login", {
+        username: username,
+      });
 
-    if (response.data.access_token) {
-      setAccessToken(response.data.access_token);
-      navigate("/cardPage");
+      if (response.data.access_token) {
+        setAccessToken(response.data.access_token);
+        navigate("/cardPage");
+      }
+    } catch {
+      setLoginFailed(true);
     }
   }
 
@@ -38,6 +47,7 @@ function Login() {
       <button className="createUser" onClick={async () => createUser()}>
         Create User
       </button>
+      {(loginFailed && <p>User Does not Exist</p>) || (signupFailed && <p>User Already Exists</p>)}
     </div>
   );
 }

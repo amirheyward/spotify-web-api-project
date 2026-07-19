@@ -59,8 +59,14 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/authenticate", (req, res) => {
+app.get("/authenticate", async (req, res) => {
   const username = req.query.username;
+  const user = await findUser(username)
+  if (user) {
+    res.redirect("http://127.0.0.1:5173/login?signupFailed=true");
+    return;
+  }
+
   const state = crypto.randomBytes(16).toString("hex").slice(0, 16);
   states.push({ state: state, username: username });
   const params = new URLSearchParams({
