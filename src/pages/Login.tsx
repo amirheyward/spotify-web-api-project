@@ -3,6 +3,8 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+axios.defaults.withCredentials = true;
+
 function Login() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function Login() {
         setAccessToken(response.data.access_token);
         navigate("/cardPage");
       }
-    } catch {
+    } catch (e) {
       setLoginFailed(true);
     }
   }
