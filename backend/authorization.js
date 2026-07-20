@@ -7,12 +7,6 @@ import path from "path";
 import cors from "cors";
 import { connect, addUser, findUser } from "./db.js";
 
-axios.defaults.withCredentials = true;
-// credentials = cookies and things of that
-// if a client sends credentials in a request, the server must have specified origins in CORS, or else it would be at risk of CSRF (cooke attack)
-// spotify CORS accepts all origins, so i have to not send credentials whenever its a spotify endpoint
-// this is a global config in memory, so imports will get this too
-
 dotenv.config({
   path: path.resolve("./backend/.env"),
 });

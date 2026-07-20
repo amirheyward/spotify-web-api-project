@@ -3,8 +3,6 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-axios.defaults.withCredentials = true;
-
 function Login() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -18,9 +16,13 @@ function Login() {
   async function login() {
     const username = inputRef.current!.value;
     try {
-      const response = await axios.post("http://127.0.0.1:8080/login", {
-        username: username,
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:8080/login",
+        {
+          username: username,
+        },
+        { withCredentials: true },
+      );
 
       if (response.data.access_token) {
         setAccessToken(response.data.access_token);
@@ -49,7 +51,8 @@ function Login() {
       <button className="createUser" onClick={async () => createUser()}>
         Create User
       </button>
-      {(loginFailed && <p>User Does not Exist</p>) || (signupFailed && <p>User Already Exists</p>)}
+      {(loginFailed && <p>User Does not Exist</p>) ||
+        (signupFailed && <p>User Already Exists</p>)}
     </div>
   );
 }
