@@ -4,6 +4,7 @@ import Card from "../components/Card.tsx";
 import { UserContext } from "../contexts/UserContext.tsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./CardPage.css"
 
 function CardPage() {
   const [content, setContent] = useState(<></>);
@@ -40,7 +41,7 @@ function CardPage() {
   }
 
   return (
-    <div>
+    <div className="mainContainer">
       <button onClick={async () => setCardDetails()}>click</button>
       <div>{content}</div>
     </div>

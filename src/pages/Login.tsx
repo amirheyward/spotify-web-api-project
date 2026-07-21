@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import "./Login.css"
 
 function Login() {
   const [searchParams] = useSearchParams();
@@ -41,18 +42,20 @@ function Login() {
   }
 
   return (
-    <div className="loginContainer">
-      Username:
-      <input ref={inputRef} type="username" />
-      <br />
-      <button className="login" onClick={async () => login()}>
-        Login
-      </button>
-      <button className="createUser" onClick={async () => createUser()}>
-        Create User
-      </button>
-      {(loginFailed && <p>User Does not Exist</p>) ||
-        (signupFailed && <p>User Already Exists</p>)}
+    <div className="mainContainer">
+      <div className="loginContainer">
+        Username:
+        <input ref={inputRef} type="username" />
+        <br />
+        <button className="login" onClick={async () => login()}>
+          Login
+        </button>
+        <button className="createUser" onClick={async () => createUser()}>
+          Create User
+        </button>
+        {(loginFailed && <p>User Does not Exist</p>) ||
+          (signupFailed && <p>User Already Exists</p>)}
+      </div>
     </div>
   );
 }
